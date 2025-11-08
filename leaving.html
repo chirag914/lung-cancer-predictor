@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goodbye - Student Health Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .fade-in {
+      animation: fadeIn 1.5s ease forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="text-center fade-in">
+    <div class="mx-auto mb-6 float">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-cyan-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+      </svg>
+    </div>
+
+    <h1 class="text-4xl font-bold text-cyan-300 mb-2">Goodbye for Now 👋</h1>
+    <p class="text-gray-300 text-lg mb-6">Thank you for using the Student Health Portal.<br>Stay safe, stay healthy, and come back soon!</p>
+
+    <div class="space-x-4 mt-4">
+      <a href="/home"
+         class="bg-cyan-400 text-black px-5 py-2 rounded-lg font-semibold hover:bg-cyan-300 transition-all">
+         🏠 Back to Home
+      </a>
+      <a href="/logout"
+         class="bg-rose-400 text-black px-5 py-2 rounded-lg font-semibold hover:bg-rose-300 transition-all">
+         🔒 Logout
+      </a>
+    </div>
+
+    <p class="mt-8 text-gray-400 text-sm">💡 Tip: Health is wealth — take a deep breath and relax 🌿</p>
+  </div>
+</body>
+</html>

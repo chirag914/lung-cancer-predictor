@@ -1,0 +1,54 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f5f6fa;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.header {
+  background: linear-gradient(90deg, #4b6cb7, #182848);
+  color: white;
+  padding: 20px;
+}
+
+.card {
+  margin: 30px auto;
+  padding: 20px;
+  width: 60%;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  animation: fadeIn 1s ease;
+}
+
+input, button {
+  margin: 8px;
+  padding: 8px;
+  width: 70%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #4b6cb7;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #182848;
+}
+
+.flash.success { color: green; }
+.flash.danger { color: red; }
+.flash.info { color: blue; }
+
+.alert.high { color: red; font-weight: bold; }
+.alert.low { color: green; font-weight: bold; }
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
+}

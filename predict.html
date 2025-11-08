@@ -1,0 +1,89 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lung Cancer Risk Predictor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+    }
+    .fade-in {
+      animation: fadeIn 1.5s ease forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    input, select {
+      color: black;
+    }
+  </style>
+</head>
+<body class="p-6">
+
+  <div class="max-w-3xl mx-auto bg-white/10 rounded-2xl shadow-lg p-8 backdrop-blur-md fade-in">
+    <h1 class="text-3xl font-bold text-center mb-6 text-cyan-300">Lung Cancer Risk Predictor</h1>
+
+    <form action="/predict" method="POST" class="space-y-4">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block mb-1 font-semibold">Gender (M=0, F=1)</label>
+          <input name="GENDER" type="number" min="0" max="1" required class="w-full rounded-md p-2 border border-gray-300" />
+        </div>
+        <div>
+          <label class="block mb-1 font-semibold">Age</label>
+          <input name="AGE" type="number" min="1" max="120" required class="w-full rounded-md p-2 border border-gray-300" />
+        </div>
+        {% for field in [
+          'SMOKING','YELLOW_FINGERS','ANXIETY','PEER_PRESSURE','CHRONIC_DISEASE',
+          'FATIGUE','ALLERGY','WHEEZING','ALCOHOL_CONSUMING','COUGHING',
+          'SHORTNESS_OF_BREATH','SWALLOWING_DIFFICULTY','CHEST_PAIN'
+        ] %}
+        <div>
+          <label class="block mb-1 font-semibold">{{ field.replace('_', ' ').title() }} (1=Yes, 2=No)</label>
+          <input name="{{ field }}" type="number" min="1" max="2" required class="w-full rounded-md p-2 border border-gray-300" />
+        </div>
+        {% endfor %}
+        <div class="col-span-2">
+          <label class="block mb-1 font-semibold">City / State</label>
+          <input name="city" type="text" placeholder="Enter your city (e.g., Mumbai, Delhi)" required class="w-full rounded-md p-2 border border-gray-300" />
+        </div>
+      </div>
+
+      <div class="text-center mt-6">
+        <button class="px-6 py-2 bg-cyan-400 text-black font-semibold rounded-md hover:bg-cyan-300 transition-all">
+          Predict Risk
+        </button>
+      </div>
+    </form>
+
+    {% if prediction is defined %}
+    <div class="mt-8 p-6 rounded-lg fade-in {% if prediction == 1 %}bg-red-600/80{% else %}bg-green-600/80{% endif %}">
+      {% if prediction == 1 %}
+        <h2 class="text-2xl font-bold text-center">⚠️ High Risk Detected!</h2>
+        <p class="text-center mt-2">You may be at high risk for lung cancer. Please consult one of the doctors below:</p>
+        <ul class="mt-4 list-disc list-inside">
+          {% for doc in doctors %}
+          <li>{{ doc }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <h2 class="text-2xl font-bold text-center">✅ Low Risk</h2>
+        <p class="text-center mt-2">Your risk appears low. Maintain a healthy lifestyle!</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <div class="text-center mt-8">
+      <a href="/home" class="text-cyan-300 hover:text-cyan-100 mr-4">🏠 Home</a>
+      <a href="/history" class="text-cyan-300 hover:text-cyan-100 mr-4">📜 History</a>
+      <a href="/logout" class="text-cyan-300 hover:text-cyan-100">🚪 Logout</a>
+    </div>
+  </div>
+</body>
+</html>

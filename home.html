@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | Student Health Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      background: url("{{ url_for('static', filename='images/download.jpeg') }}") no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      padding-top: 80px; /* space for navbar */
+      position: relative;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.85);
+      z-index: 0;
+      backdrop-filter: blur(5px);
+    }
+
+    .fade-in {
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body class="fade-in relative">
+  <div class="overlay"></div>
+
+  <!-- 🌟 Sticky Navbar -->
+  <nav class="fixed top-0 left-0 w-full z-20 bg-white/10 backdrop-blur-md shadow-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <img src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png" class="w-8 h-8" alt="logo" />
+        <span class="text-xl font-semibold text-cyan-300">Student Health Portal</span>
+      </div>
+
+      <div class="flex items-center space-x-4">
+        <span class="text-gray-200">👋 Hello, <strong>{{ username }}</strong></span>
+        <a href="/logout" class="bg-cyan-400 text-black px-3 py-1 rounded-md font-semibold hover:bg-cyan-300 transition-all">
+          Logout
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 🌿 Main Content -->
+  <div class="max-w-5xl mx-auto relative z-10">
+    <!-- Info Section -->
+    <div class="card">
+      <h2 class="text-2xl font-semibold text-emerald-400 mb-3">About Lung Cancer</h2>
+      <p class="text-gray-200 leading-relaxed">
+        Lung cancer arises when abnormal cells in the lungs grow uncontrollably.
+        The leading causes include tobacco use, exposure to air pollution, and genetic factors.
+        Symptoms often appear late — such as persistent coughing, chest pain, and fatigue — making early detection vital.
+      </p>
+      <p class="mt-3 text-gray-300">
+        🧠 <strong>Health Tip:</strong> Quit smoking, avoid polluted air, exercise regularly, and eat antioxidant-rich foods to strengthen your lungs.
+      </p>
+      <!-- 🌿 Lung Health Flip Card Recommendations -->
+<div class="card relative overflow-hidden">
+  <h2 class="text-2xl font-semibold text-emerald-400 mb-6 text-center">
+    💡 Lung Health Recommendations
+  </h2>
+
+  <div class="grid md:grid-cols-3 gap-6">
+    <!-- Card 1 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front bg-cyan-500/30 flex flex-col items-center justify-center p-6 rounded-2xl shadow-md">
+          <img src="https://cdn-icons-png.flaticon.com/512/2910/2910768.png" class="w-16 mb-3" alt="No Smoking">
+          <h3 class="text-xl font-bold text-white">🚭 Quit Smoking</h3>
+        </div>
+        <div class="flip-card-back bg-emerald-500/20 flex items-center justify-center p-5 rounded-2xl text-center">
+          <p>Smoking is the #1 cause of lung cancer. Quitting today can significantly reduce your risk, no matter how long you've smoked.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front bg-blue-500/30 flex flex-col items-center justify-center p-6 rounded-2xl shadow-md">
+          <img src="https://cdn-icons-png.flaticon.com/512/3917/3917526.png" class="w-16 mb-3" alt="Air Quality">
+          <h3 class="text-xl font-bold text-white">🌬️ Breathe Clean Air</h3>
+        </div>
+        <div class="flip-card-back bg-indigo-500/20 flex items-center justify-center p-5 rounded-2xl text-center">
+          <p>Limit outdoor exposure during heavy pollution. Use indoor air purifiers and avoid smoking areas or burning incense excessively.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front bg-teal-500/30 flex flex-col items-center justify-center p-6 rounded-2xl shadow-md">
+          <img src="https://cdn-icons-png.flaticon.com/512/562/562678.png" class="w-16 mb-3" alt="Diet">
+          <h3 class="text-xl font-bold text-white">🥦 Eat Healthy</h3>
+        </div>
+        <div class="flip-card-back bg-green-500/20 flex items-center justify-center p-5 rounded-2xl text-center">
+          <p>Include green veggies, berries, and foods rich in antioxidants to protect your lung cells from free radical damage.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front bg-fuchsia-500/30 flex flex-col items-center justify-center p-6 rounded-2xl shadow-md">
+          <img src="https://cdn-icons-png.flaticon.com/512/2974/2974934.png" class="w-16 mb-3" alt="Exercise">
+          <h3 class="text-xl font-bold text-white">🏃 Stay Active</h3>
+        </div>
+        <div class="flip-card-back bg-pink-500/20 flex items-center justify-center p-5 rounded-2xl text-center">
+          <p>Exercise strengthens lung capacity and oxygen flow. Even brisk walking 30 mins a day can improve your respiratory health.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front bg-orange-500/30 flex flex-col items-center justify-center p-6 rounded-2xl shadow-md">
+          <img src="https://cdn-icons-png.flaticon.com/512/3886/3886814.png" class="w-16 mb-3" alt="Checkup">
+          <h3 class="text-xl font-bold text-white">🩺 Regular Checkups</h3>
+        </div>
+        <div class="flip-card-back bg-orange-400/20 flex items-center justify-center p-5 rounded-2xl text-center">
+          <p>See your doctor if you notice chronic cough, chest pain, or fatigue. Early diagnosis saves lives.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front bg-yellow-500/30 flex flex-col items-center justify-center p-6 rounded-2xl shadow-md">
+          <img src="https://cdn-icons-png.flaticon.com/512/1973/1973077.png" class="w-16 mb-3" alt="Hydration">
+          <h3 class="text-xl font-bold text-white">💧 Stay Hydrated</h3>
+        </div>
+        <div class="flip-card-back bg-yellow-400/20 flex items-center justify-center p-5 rounded-2xl text-center">
+          <p>Drinking plenty of water keeps your airways clear and lungs moist, improving natural detoxification.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 🌱 Motivational Quote -->
+<p class="text-center text-gray-300 italic mt-8">
+  “Your lungs breathe life into every moment — take care of them, and they’ll take care of you.” 🌱
+</p>
+
+    </div>
+
+    <!-- 🌍 Lung Cancer Chart Section -->
+    <div class="card relative overflow-hidden group transition-all duration-300 hover:scale-[1.01] hover:shadow-lg">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-semibold text-cyan-300 flex items-center space-x-2">
+          <span>📊 Lung Cancer Trends in India</span>
+          <span class="text-sm text-gray-400">(2020–2023)</span>
+        </h2>
+      </div>
+
+      <canvas id="lungChart" height="160"></canvas>
+
+      <p id="updateInfo" class="text-sm text-gray-400 mt-4 italic text-center">
+        Loading live data...
+      </p>
+
+      <!-- Decorative gradient overlay -->
+      <div class="absolute inset-0 bg-gradient-to-br from-cyan-400/10 via-transparent to-emerald-400/10 opacity-0 group-hover:opacity-100 transition-all"></div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="text-center mt-8 space-x-4">
+      <a href="/predict" class="text-cyan-300 hover:text-cyan-100">🧠 Predict Risk</a>
+      <a href="/history" class="text-cyan-300 hover:text-cyan-100">📜 View History</a>
+      <a href="/leaving" class="text-cyan-300 hover:text-cyan-100">🚪 Exit</a>
+    </div>
+  </div>
+
+  <!-- 📈 Chart Script -->
+  <script>
+    async function loadAndDrawLungChart() {
+      try {
+        const resp = await fetch('/api/lung-data');
+        const json = await resp.json();
+
+        const years = json.years;
+        const states = json.states;
+        const values = json.values;
+
+        const datasets = years.map((year, idx) => {
+          const colors = [
+            'rgba(34,211,238,0.85)',
+            'rgba(99,102,241,0.85)',
+            'rgba(16,185,129,0.85)'
+          ];
+          return {
+            label: `Year ${year}`,
+            data: values[String(year)],
+            backgroundColor: colors[idx % colors.length],
+            borderColor: 'rgba(255,255,255,0.9)',
+            borderWidth: 1,
+            borderRadius: 6
+          };
+        });
+
+        const ctx = document.getElementById('lungChart').getContext('2d');
+        if (window.lungChartInstance) window.lungChartInstance.destroy();
+
+        window.lungChartInstance = new Chart(ctx, {
+          type: 'bar',
+          data: { labels: states, datasets: datasets },
+          options: {
+            responsive: true,
+            interaction: { mode: 'index', intersect: false },
+            scales: {
+              x: {
+                ticks: { color: 'white' },
+                grid: { display: false }
+              },
+              y: {
+                beginAtZero: true,
+                ticks: { color: 'white' },
+                grid: { color: 'rgba(255,255,255,0.15)' }
+              }
+            },
+            plugins: {
+              legend: {
+                labels: { color: 'white', font: { weight: 'bold' } }
+              },
+              tooltip: {
+                backgroundColor: 'rgba(15,23,42,0.9)',
+                titleColor: '#22d3ee',
+                bodyColor: '#fff'
+              }
+            }
+          }
+        });
+
+        document.getElementById('updateInfo').innerText =
+          `📅 Years shown: ${years.join(', ')} — Source: data.gov.in / IARC`;
+      } catch (err) {
+        console.error('Failed to load lung data:', err);
+        document.getElementById('updateInfo').innerText =
+          '⚠️ Could not load live data — showing fallback.';
+      }
+    }
+
+    loadAndDrawLungChart();
+  </script>
+</body>
+</html>
